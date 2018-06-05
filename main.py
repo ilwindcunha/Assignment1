@@ -3,6 +3,8 @@ from flask import Flask, render_template, request, redirect, url_for, send_from_
 import sqlite3 as sql
 import csv
 import os
+import sys, traceback
+
 
 app = Flask(__name__)
 
@@ -56,23 +58,33 @@ def addrec():
 def uploadCSV():
     file = request.files['file']
     print(file.filename)
-    with open(file.filename, encoding='ISO-8859-1') as f:
+    try:
+        with open(file.filename, encoding='ISO-8859-1') as f:
 
-        reader = csv.reader(f)
-        columns = next(reader)
-        print(columns)
-        query = 'insert into Picture ({0}) values ({1})'
-        query = query.format(','.join(columns), ','.join('?' * len(columns)))
+            reader = csv.reader(f)
+            columns = next(reader)
+            print(columns)
+            query = 'insert into Picture ({0}) values ({1})'
+            query = query.format(','.join(columns), ','.join('?' * len(columns)))
 
-        with sql.connect("imageDB.db") as con:
-           cur = con.cursor()
+            with sql.connect("imageDB.db") as con:
+               cur = con.cursor()
 
-        for data in reader:
-            cur.execute(query, data)
+            for data in reader:
+                cur.execute(query, data)
 
-            con.commit()
-        print('success')
-        return render_template('index.php')
+                con.commit()
+            print('success')
+            return render_template('index.php')
+    except:
+        print
+        "Exception in user code:"
+        print
+        '-' * 60
+        traceback.print_exc(file=sys.stdout)
+        print
+        '-' * 60
+        return traceback.print_exc(file=sys.stdout)
 
 @app.route('/show', methods=['POST'])
 def show():
