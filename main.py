@@ -57,6 +57,13 @@ def uploadCSV():
     file = request.files['file']
     print(file.filename)
 
+    with sql.connect("practiceQuiz.db") as con:
+        cur = con.cursor()
+
+        cur.execute("delete from quiz1")
+
+        con.commit()
+
     #######
     destination = os.path.join(os.path.dirname(os.path.abspath(__file__)))
     newfiledest = "/".join([destination, file.filename])
