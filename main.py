@@ -3,8 +3,6 @@ from flask import Flask, render_template, request, redirect, url_for, send_from_
 import sqlite3 as sql
 import csv
 import os
-import sys, traceback
-
 
 app = Flask(__name__)
 
@@ -58,33 +56,32 @@ def addrec():
 def uploadCSV():
     file = request.files['file']
     print(file.filename)
-    try:
-        with open(file.filename, encoding='ISO-8859-1') as f:
 
-            reader = csv.reader(f)
-            columns = next(reader)
-            print(columns)
-            query = 'insert into Picture ({0}) values ({1})'
-            query = query.format(','.join(columns), ','.join('?' * len(columns)))
+    #######
+    destination = os.path.join(os.path.dirname(os.path.abspath(__file__)))
+    newfiledest = "/".join([destination, file.filename])
+    file.save(newfiledest)
+    #######
 
-            with sql.connect("imageDB.db") as con:
-               cur = con.cursor()
+    with open(file.filename, encoding='ISO-8859-1') as f:
 
-            for data in reader:
-                cur.execute(query, data)
+        reader = csv.reader(f)
+        columns = next(reader)
+        print(columns)
+        #query = 'insert into Picture ({0}) values ({1})'
+        query = 'insert into quiz1 ({0}) values ({1})'
+        query = query.format(','.join(columns), ','.join('?' * len(columns)))
 
-                con.commit()
-            print('success')
-            return render_template('index.php')
-    except:
-        print
-        "Exception in user code:"
-        print
-        '-' * 60
-        traceback.print_exc(file=sys.stdout)
-        print
-        '-' * 60
-        return traceback.print_exc(file=sys.stdout)
+        #with sql.connect("imageDB.db") as con:
+        with sql.connect("practiceQuiz.db") as con:
+           cur = con.cursor()
+
+        for data in reader:
+            cur.execute(query, data)
+
+            con.commit()
+        print('success')
+        return render_template('index.php')
 
 @app.route('/show', methods=['POST'])
 def show():
