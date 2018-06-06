@@ -92,7 +92,7 @@ def show():
         #cursor.commit()
 
 
-    return render_template('index.php', variable=m)
+    return render_template('index.php')
 
 
 @app.route('/vehicle')
