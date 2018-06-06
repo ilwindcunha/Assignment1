@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View</title>
+</head>
+<body>
+        <Center>
+        <h3> {% for i,j in zipped_data %}</h3>
+
+            <img src=" {{url_for('static', filename=i)}}" height="300" width="300" alt="No Image Available">
+            <br>
+            <h2>{{ j }}</h2>
+        {% endfor %}
+        </Center>
+</body>
+</html>

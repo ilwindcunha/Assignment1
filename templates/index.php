@@ -32,6 +32,7 @@
                             <div class="col-md-4">
                                 <button type="submit" id="submit" name="Import" class="btn btn-primary button-loading" data-loading-text="Loading...">Import</button>
                             </div>
+                            <p>Here is my file size: {{ variable }}</p>
                         </div>
 
 
@@ -64,6 +65,7 @@
                     </fieldset>
                 </form>
 
+                <a  href="/vehicle" >Click here for UI</img>
 
 
 
