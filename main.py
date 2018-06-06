@@ -21,6 +21,7 @@ cursor = cnxn.cursor()
 
 @app.route('/')
 def home():
+
    return render_template('index.php')
 
 @app.route('/enternew')
