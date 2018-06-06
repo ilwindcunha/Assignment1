@@ -91,7 +91,7 @@ def show():
 
 @app.route('/vehicle')
 def vehicle():
-    return render_template('Vehicle.html', variable=m)
+    return render_template('Vehicle.html')
 
 
 
