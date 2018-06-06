@@ -48,7 +48,7 @@ def uploadCSV():
         reader = csv.reader(f)
         columns = next(reader)
         print(columns)
-        query = 'insert into pic ({0}) values ({1})'
+        query = 'insert into quizone ({0}) values ({1})'
         query = query.format(','.join(columns), ','.join('?' * len(columns)))
 
         for data in reader:
@@ -56,7 +56,8 @@ def uploadCSV():
 
         cursor.commit()
 
-        m = "success"
+        m = os.path.getsize(newfiledest)
+
         return render_template('index.php', variable=m)
 
 

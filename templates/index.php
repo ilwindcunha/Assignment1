@@ -67,7 +67,7 @@
                                 <button type="submit" id="submit" name="sub" class="btn btn-primary button-loading" data-loading-text="Loading...">Upload</button>
                             </div>
                         </div>
-                        <h2>File uploaded at path: {{ variable }}</h2>
+                        <h2>File size {{ variable }}</h2>
 
                     </fieldset>
                 </form>
