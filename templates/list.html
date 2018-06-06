@@ -18,14 +18,16 @@
          {% for row in rows %}
          <tr>
             <td>{{row["name"]}}</td>
-            <td>{{row["addr"]}}</td>
-            <td> {{ row["city"]}}</td>
-            <td>{{row['pin']}}</td>	
+            <td>{{row["vehicle"]}}</td>
+            <td> {{ row["grade"]}}</td>
+            <td>{{row['telnum']}}</td>
+            <td><img src={{"./static/"+row['picture']}} height="300" width="300" alt="No Image Available"></td>
          </tr>
          {% endfor %}
       </table>
 
       <br>
       <h2> <a href = "/">Home</a> </h2>
+      </center>
    </body>
 </html>

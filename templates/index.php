@@ -16,8 +16,14 @@
                     <fieldset>
 
                         <!-- Form Name -->
-                        <h2>Ilwin Joey Dcunha</h2><br>
-                        <h2>1001390458</h2>
+                        <center>
+                            S<h2>Ilwin Joey Dcunha</h2><br>
+                            <h2>1001390458</h2>
+                            <img src=" {{url_for('static', filename='ilwin.jpg')}}" height="300" width="300" alt="No Image Available">
+                        </center>
+                        <br>
+                        <br>
+
                         <!-- File Button -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="filebutton">Select File</label>
@@ -32,8 +38,9 @@
                             <div class="col-md-4">
                                 <button type="submit" id="submit" name="Import" class="btn btn-primary button-loading" data-loading-text="Loading...">Import</button>
                             </div>
-                            <p>Here is my file size: {{ variable }}</p>
+
                         </div>
+
 
 
                     </fieldset>
@@ -60,14 +67,14 @@
                                 <button type="submit" id="submit" name="sub" class="btn btn-primary button-loading" data-loading-text="Loading...">Upload</button>
                             </div>
                         </div>
-
+                        <h2>File uploaded at path: {{ variable }}</h2>
 
                     </fieldset>
                 </form>
 
                 <a  href="/vehicle" >Click here for UI</img>
 
-
+                 <a  href="/list" >Click here for Test</img>
 
             </div>
             <?php
