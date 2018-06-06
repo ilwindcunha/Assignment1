@@ -72,7 +72,7 @@
                     </fieldset>
                 </form>
 
-                <a  href="/vehicle" >Click here for UI</img>
+                <a  href="/name" >Click here for Instructor</img>
 
                  <a  href="/list" >Click here for Test</img>
 

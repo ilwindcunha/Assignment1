@@ -9,19 +9,14 @@
       <br> <br>
       <table border = 1>
          <thead>
-            <td>Name</td>
-            <td>Address</td>
-            <td>city</td>
-            <td>Pincode</td>
+            <td>Instructor</td>
+
          </thead>
 
          {% for row in rows %}
          <tr>
-            <td>{{row["name"]}}</td>
-            <td>{{row["vehicle"]}}</td>
-            <td> {{ row["grade"]}}</td>
-            <td>{{row['telnum']}}</td>
-            <td><img src={{"./static/"+row['picture']}} height="300" width="300" alt="No Image Available"></td>
+            <td>{{row["Instructor"]}}</td>
+
          </tr>
          {% endfor %}
       </table>

@@ -95,9 +95,9 @@ def show():
     return render_template('index.php')
 
 
-@app.route('/vehicle')
+@app.route('/name')
 def vehicle():
-    return render_template('Vehicle.html')
+    return render_template('names.php')
 
 
 
@@ -107,30 +107,15 @@ def vehicle():
 def search():
     if request.method == 'POST':
         result = []
-        vehicleName = request.form['vehicleName']
-        print(vehicleName)
+        courceNo = request.form['courceNo']
+        day = request.form['day']
+        print(courceNo)
         #cursor.execute("select room from pic WHERE vehicle=?", (vehicleName,))
-        cursor.execute("select room,picture from pic WHERE vehicle='Car'")
-        room = []
-        picture = []
+        # cursor.execute("select room,picture from pic WHERE vehicle='Car'")
+        cursor.execute("select Instructor from quizone where Course=? and Dayss = ?", (courceNo,day))
 
-        for row in cursor:
-            result.append(row)
-        print(result)
-
-        room = [x[0] for x in result]
-
-        picture = [x[1] for x in result]
-
-        zipped_data = zip(picture, room)
-
-        print(room)
-        print(picture)
-
-        print(zipped_data)
-
-
-    return render_template('View.html', zipped_data=zipped_data)
+        rows = cursor.fetchall()
+        return render_template("list.html", rows=rows)
 
 # @app.route('/uploadCSV',methods=['POST'])
 # def uploadCSV():
