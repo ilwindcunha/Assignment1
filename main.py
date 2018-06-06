@@ -18,13 +18,6 @@ cnxn = pyodbc.connect(
     'DRIVER=' + driver + ';PORT=1433;SERVER=' + server + ';PORT=1443;DATABASE=' + database + ';UID=' + username + ';PWD=' + password)
 cursor = cnxn.cursor()
 
-##################
-#conn = sqlite3.connect('database.db')
-m = 0
-# print("Opened database successfully")
-# conn.execute('CREATE TABLE students (name TEXT, addr TEXT, city TEXT, pin TEXT)')
-# print("Table created successfully")
-# conn.close()
 
 @app.route('/')
 def home():
