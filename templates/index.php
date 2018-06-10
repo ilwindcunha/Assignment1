@@ -15,15 +15,6 @@
                 <form class="form-horizontal" action="/uploadCSV" method="post" name="upload_excel" enctype="multipart/form-data">
                     <fieldset>
 
-                        <!-- Form Name -->
-                        <center>
-                            S<h2>Ilwin Joey Dcunha</h2><br>
-                            <h2>1001390458</h2>
-                            <img src=" {{url_for('static', filename='ilwin.jpg')}}" height="300" width="300" alt="No Image Available">
-                        </center>
-                        <br>
-                        <br>
-
                         <!-- File Button -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="filebutton">Select File</label>
@@ -42,39 +33,10 @@
                         </div>
                          <h2>File size {{ variable }}</h2>
 
+                        <a href="/UI"> click here for UI</a>
 
                     </fieldset>
                 </form>
-
-
-                <form class="form-horizontal" action="/show" method="post" name="upload_image" enctype="multipart/form-data">
-                    <fieldset>
-
-
-
-                        <!-- File Button -->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="filebutton">Select Image</label>
-                            <div class="col-md-4">
-                                <input type="file" name="imageFile" id="file2" class="input-large">
-                            </div>
-                        </div>
-
-                        <!-- Button -->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="singlebutton">upload image</label>
-                            <div class="col-md-4">
-                                <button type="submit" id="submit" name="sub" class="btn btn-primary button-loading" data-loading-text="Loading...">Upload</button>
-                            </div>
-                        </div>
-
-
-                    </fieldset>
-                </form>
-
-                <a  href="/name" >Click here for Instructor</img>
-
-                 <a  href="/list" >Click here for Test</img>
 
             </div>
             <?php
