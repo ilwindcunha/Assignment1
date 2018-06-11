@@ -70,7 +70,7 @@ def uploadCSV():
         reader = csv.reader(f)
         columns = next(reader)
         print(columns)
-        query = 'insert into EarthquakeTwo ({0}) values ({1})'
+        query = 'insert into Earthquakethree ({0}) values ({1})'
         query = query.format(','.join(columns), ','.join('?' * len(columns)))
 
         for data in reader:
@@ -88,7 +88,7 @@ def addrec():
 
     if request.method == 'POST':
         # print("inside")
-        query = "select count(*) from EarthquakeTwo where mag > 5.0"
+        query = "select count(*) from Earthquakethree where mag > 5.0"
         print(query)
         cursor.execute(query)
         result=cursor.fetchone()
@@ -111,7 +111,7 @@ def search():
             length=datetime.now()-timedelta(days=7)
         if duration1=="month":
             length=datetime.now()-timedelta(days=30)
-        cursor.execute("select mag,latitude,longitude from earthquaketwo where (mag between "+range1+" and "+range2+") and timee > ?", (length,))
+        cursor.execute("select mag,latitude,longitude from Earthquakethree where (mag between "+range1+" and "+range2+") and timee > ?", (length,))
         rows = cursor.fetchall()
         for row in rows:
              print(row)
@@ -132,7 +132,7 @@ def searchTwo():
                        "* COS(RADIANS(longpoint) - RADIANS(longitude))"
                        "+ SIN(RADIANS(latpoint))"
                        "* SIN(RADIANS(latitude)))) AS distance_in_km "
-                       "from earthquaketwo "
+                       "from Earthquakethree "
                        "JOIN ("
                        "SELECT  "+latitude+" AS latpoint, "+longitude+" AS longpoint"
                        ") AS p ON 1=1 "
@@ -243,7 +243,7 @@ def main():
         return render_template('cluster.html',cdist=cdist,pdict=pdict, disCluster = disCluster)
 
 def getdata():
-    query = "select latitude,longitude from EarthquakeTwo"
+    query = "select latitude,longitude from Earthquakethree"
 
     print(query)
     cursor.execute(query)
