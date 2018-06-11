@@ -34,8 +34,10 @@
                          <h2>File size {{ variable }}</h2>
 
                         <a href="/UI"> click here for UI</a>
-
+                        <br>
                         <a href="/earthquake"> click here for Earthquakes</a>
+                         <br>
+                         <a href="/cluster"> click here for cluster </a>
                     </fieldset>
                 </form>
 
