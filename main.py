@@ -172,9 +172,9 @@ def question():
         print("count of day ")
         print(countDay)
         if(countNight>countDay):
-            res = 'Yes'
+            res = 'Yes Night count = ' + str(countNight) +', Day count= ' +str(countDay)
         else:
-            res = 'No'
+            res = 'No Night count = ' + str(countNight) +', Day count= ' +str(countDay)
 
         return render_template('index.php', res = res)
 
