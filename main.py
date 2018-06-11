@@ -144,6 +144,39 @@ def searchTwo():
              print(row)
         return render_template('view2.html', rows = rows)
 
+@app.route('/searchthree', methods=['GET', 'POST'])
+def searchthree():
+       if request.method == 'POST':
+
+           value=""
+           rangeone = float(request.form['rangeone'])
+           rangetwo = float(request.form['rangetwo'])
+           query = ("select count(*) from earthquakethree where gap between '"+str(rangeone)+"' and '"+str(rangetwo)+"'")
+           print(query)
+           cursor.execute(query)
+           inBetween = cursor.fetchone()
+           print(inBetween)
+           value = "In betwen = "+str(inBetween)+" "
+
+           query = ("select count(*) from earthquakethree where gap < '"+str(rangeone)+"'")
+           print(query)
+           cursor.execute(query)
+           below = cursor.fetchone()
+           print(below)
+           value = value + ", Below = " + str(below) + " "
+           print(value)
+
+           query = ("select count(*) from earthquakethree where gap > '" + str(rangetwo) + "'")
+           print(query)
+           cursor.execute(query)
+           above = cursor.fetchone()
+           print(above)
+           value = value + ", above= " + str(above) + " "
+           print(value)
+
+
+           return render_template('view2.html', rows=value)
+
 @app.route('/question')
 def question():
         query=("select timee from earthquakethree where mag > 4.0")
