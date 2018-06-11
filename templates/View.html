@@ -1,20 +1,9 @@
 <html>
    <body>
       <center>
-      <header> <h1> Information Request Portal </h1> </header>
-      <br> <br>
 
 
-      <center>
-      <form action = "{{ url_for('addrec') }}" method = "POST">
-
-          <label> Search for and count all earthquakes that occurred with a magnitude greater
-          than 5.0</label>
-          <input type = "submit" value = "submit" /><br>
-          <label>Answer: No of records gotten </label> <strong>{{msg}}</strong>
-      </form>
-
-      <form action = "{{ url_for('query_search1') }}" method = "POST">
+      <form action = "{{ url_for('search') }}" method = "POST">
       <h3>Earth quake data</h3>
           <label>Range 1</label><input type = "text" name = "range1" /></br>
           <label>Range 2</label><input type = "text" name = "range2" /></br>

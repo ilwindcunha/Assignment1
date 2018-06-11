@@ -35,6 +35,7 @@
 
                         <a href="/UI"> click here for UI</a>
 
+                        <a href="/earthquake"> click here for Earthquakes</a>
                     </fieldset>
                 </form>
 
