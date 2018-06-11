@@ -177,6 +177,25 @@ def searchthree():
 
            return render_template('view2.html', rows=value)
 
+# Allow a user, through a web form, to give a location source (locationSource column) such as "us" and
+#     a magnitude and then, on a web page, list time, latitude, longitude, and place for all earthquakes larger
+#     than that magnitude - ONLY IF the magNst times two is greater than or equal to  the nst (magNst * 2 >= nst).
+@app.route('/searchfour', methods=['GET', 'POST'])
+def searchfour():
+       if request.method == 'POST':
+
+
+           locationSource = (request.form['locationSource'])
+           mag = float(request.form['mag'])
+
+           query = ("select timee,latitude,longitude,place from earthquakethree where locationSource = '"+ locationSource +"' and mag > '"+str(mag)+"'"
+                    +" and nst < magNst * 2")
+           print(query)
+           cursor.execute(query)
+           value = cursor.fetchall()
+           print(value)
+           return render_template('view2.html', rows=value)
+
 @app.route('/question')
 def question():
         query=("select timee from earthquakethree where mag > 4.0")
@@ -210,6 +229,8 @@ def question():
             res = 'No Night count = ' + str(countNight) +', Day count= ' +str(countDay)
 
         return render_template('index.php', res = res)
+
+
 
 @app.route('/kmeans', methods=['GET', 'POST'])
 def main():

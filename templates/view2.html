@@ -14,18 +14,18 @@
       <header> <h1> Earthquake data</h1> </header>
       <br> <br>
 
-      <form action = "{{ url_for('searchthree') }}" method = "POST">
+      <form action = "{{ url_for('searchfour') }}" method = "POST">
 
-          <label >Range1</label><input type = "text" name = "rangeone" /></br>
-          <label >Range2</label><input type = "text" name = "rangetwo" /></br>
+          <label >Location Source</label><input type = "text" name = "locationSource" /></br>
+          <label >Magnitude</label><input type = "text" name = "mag" /></br>
       <button type="submit" id="submit" name="Import" class="btn btn-primary button-loading" data-loading-text="Loading...">Search</button>
 
 
-          <h1> {{rows}}</h1>
-          <!--<h2> Display results here</h2>
+          <!--<h1> {{rows}}</h1>-->
+          <h2> Display results here</h2>
              <table border = 1>
          <thead>
-            <td>Mag</td>
+            <td>time</td>
             <td>Lat</td>
             <td>Long</td>
             <td>Place</td>
@@ -33,13 +33,13 @@
 
          {% for row in rows %}
          <tr>
-            <td>{{row["mag"]}}</td>
+            <td>{{row["timee"]}}</td>
             <td>{{row["latitude"]}}</td>
             <td> {{ row["longitude"]}}</td>
              <td> {{ row["place"]}}</td>
 
          </tr>
-         {% endfor %}-->
+         {% endfor %}
       </table>
       </form>
 
