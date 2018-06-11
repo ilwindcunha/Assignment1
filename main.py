@@ -12,8 +12,8 @@ from datetime import datetime
 from datetime import timedelta
 import csv
 import os
-# import pypyodbc
-import pyodbc
+import pypyodbc
+# import pyodbc
 
 app = Flask(__name__,template_folder="templates")
 
@@ -26,10 +26,10 @@ username = 'ilwin'
 password = 'esxi@S5n'
 driver = '{SQL Server}'
 
-# cnxn = pypyodbc.connect("Driver={ODBC Driver 13 for SQL Server};"
-#                         "Server=tcp:ilwin.database.windows.net;Database=ilwin;Uid=ilwin;Pwd=esxi@S5n;")
-cnxn = pyodbc.connect(
-    'DRIVER=' + driver + ';PORT=1433;SERVER=' + server + ';PORT=1443;DATABASE=' + database + ';UID=' + username + ';PWD=' + password)
+cnxn = pypyodbc.connect("Driver={ODBC Driver 13 for SQL Server};"
+                        "Server=tcp:ilwin.database.windows.net;Database=ilwin;Uid=ilwin;Pwd=esxi@S5n;")
+# cnxn = pyodbc.connect(
+#     'DRIVER=' + driver + ';PORT=1433;SERVER=' + server + ';PORT=1443;DATABASE=' + database + ';UID=' + username + ';PWD=' + password)
 cursor = cnxn.cursor()
 
 mylist = []
