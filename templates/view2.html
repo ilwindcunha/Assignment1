@@ -26,7 +26,7 @@
             <td>Mag</td>
             <td>Lat</td>
             <td>Long</td>
-
+            <td>Place</td>
          </thead>
 
          {% for row in rows %}
@@ -34,6 +34,7 @@
             <td>{{row["mag"]}}</td>
             <td>{{row["latitude"]}}</td>
             <td> {{ row["longitude"]}}</td>
+             <td> {{ row["place"]}}</td>
 
          </tr>
          {% endfor %}

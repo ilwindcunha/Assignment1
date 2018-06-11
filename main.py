@@ -126,7 +126,7 @@ def searchTwo():
         longitude = request.form['longitude']
 
 
-        query=("select top 20 mag,latitude,longitude, "
+        query=("select top 20 mag,latitude,longitude, place, "
                        "111.045* DEGREES(ACOS(COS(RADIANS(latpoint))"
                        "* COS(RADIANS(latitude))"
                        "* COS(RADIANS(longpoint) - RADIANS(longitude))"
