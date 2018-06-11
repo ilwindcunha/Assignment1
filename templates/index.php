@@ -38,6 +38,11 @@
                         <a href="/earthquake"> click here for Earthquakes</a>
                          <br>
                          <a href="/cluster"> click here for cluster </a>
+                        <br>
+                         <strong>   Do large (>4.0 mag) occur more often at night? </strong>
+                         <b><a href="/question">  Click </a> to find out.<br>
+                         <b> Ans: {{res}}
+
                     </fieldset>
                 </form>
 

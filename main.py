@@ -12,8 +12,8 @@ from datetime import datetime
 from datetime import timedelta
 import csv
 import os
-import pypyodbc
-# import pyodbc
+# import pypyodbc
+import pyodbc
 
 app = Flask(__name__,template_folder="templates")
 
@@ -26,10 +26,10 @@ username = 'ilwin'
 password = 'esxi@S5n'
 driver = '{SQL Server}'
 
-cnxn = pypyodbc.connect("Driver={ODBC Driver 13 for SQL Server};"
-                        "Server=tcp:ilwin.database.windows.net;Database=ilwin;Uid=ilwin;Pwd=esxi@S5n;")
-# cnxn = pyodbc.connect(
-#     'DRIVER=' + driver + ';PORT=1433;SERVER=' + server + ';PORT=1443;DATABASE=' + database + ';UID=' + username + ';PWD=' + password)
+# cnxn = pypyodbc.connect("Driver={ODBC Driver 13 for SQL Server};"
+#                         "Server=tcp:ilwin.database.windows.net;Database=ilwin;Uid=ilwin;Pwd=esxi@S5n;")
+cnxn = pyodbc.connect(
+    'DRIVER=' + driver + ';PORT=1433;SERVER=' + server + ';PORT=1443;DATABASE=' + database + ';UID=' + username + ';PWD=' + password)
 cursor = cnxn.cursor()
 
 mylist = []
@@ -144,22 +144,52 @@ def searchTwo():
              print(row)
         return render_template('view2.html', rows = rows)
 
+@app.route('/question')
+def question():
+        query=("select timee from earthquakethree where mag > 4.0")
+        print(query)
+        cursor.execute(query)
+        rows = cursor.fetchall()
+        lightmin = datetime(2018, 6, 10, 6, 0, 0).time()
+        lightmax = datetime(2018, 6, 10, 20, 0, 0).time()
+        countNight=0;
+        countDay =0;
+        nightmin = datetime(2018, 6, 10, 20, 0, 1).time()
+        nightmax = datetime(2018, 6, 10, 23, 59, 59).time()
 
+        for row in rows:
+            print(row[0])
+            timeInquestion = row[0]
+            dataValue = timeInquestion.time()
+            print(dataValue)
+            if(lightmin<=dataValue<=lightmax):
+                countDay=int(countDay)+1
+            elif(nightmin<=dataValue<=nightmax):
+                countNight = int(countNight) + 1
+
+        print("count of night ")
+        print(countNight)
+        print("count of day ")
+        print(countDay)
+        if(countNight>countDay):
+            res = 'Yes'
+        else:
+            res = 'No'
+
+        return render_template('index.php', res = res)
 
 @app.route('/kmeans', methods=['GET', 'POST'])
 def main():
 
         clusters = request.form['clusters']
         K_clusters = int(clusters)
-
-        mylist = getdata()
-        data = []
+        mylist = getdatafromdatabase()
         cdist=[]
-        ab=[]
         data = array(mylist)
         cent, pts = kmeans2(data,K_clusters)
-
         disCluster = []
+
+
         for i in range(len(cent)):
             x1 = cent[i][0]
             y1 = cent[i][1]
@@ -242,7 +272,7 @@ def main():
 
         return render_template('cluster.html',cdist=cdist,pdict=pdict, disCluster = disCluster)
 
-def getdata():
+def getdatafromdatabase():
     query = "select latitude,longitude from Earthquakethree"
 
     print(query)
