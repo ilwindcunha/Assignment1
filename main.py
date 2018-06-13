@@ -18,7 +18,7 @@ import pypyodbc
 app = Flask(__name__,template_folder="templates")
 
 import sqlite3
-
+##comment to show
 ##################
 server = 'ilwin.database.windows.net'
 database = 'ilwin'
@@ -195,6 +195,45 @@ def searchfour():
            value = cursor.fetchall()
            print(value)
            return render_template('view2.html', rows=value)
+# the largest earthquake and smallest earthquake within that distance
+#     (please show lat, long, time, and location), as well as showing us the count of total number of earthquakes
+#     within that area.
+@app.route('/searchfive', methods=['GET', 'POST'])
+def searchfive():
+   if request.method == 'POST':
+        latitude ='32.7357'
+        longitude = '-97.1081'
+        distancedata = (request.form['distance'])
+
+        query=("select  mag, "
+                       "111.045* DEGREES(ACOS(COS(RADIANS(latpoint))"
+                       "* COS(RADIANS(latitude))"
+                       "* COS(RADIANS(longpoint) - RADIANS(longitude))"
+                       "+ SIN(RADIANS(latpoint))"
+                       "* SIN(RADIANS(latitude)))) AS distance_in_km "
+                       "from Earthquakethree "
+                       "JOIN ("
+                       "SELECT  "+latitude+" AS latpoint, "+longitude+" AS longpoint"
+                       ") AS p ON 1=1 "
+                       "ORDER BY distance_in_km")
+        print(query)
+        cursor.execute(query)
+        rows = cursor.fetchall()
+        count1=0
+        temp=0.0
+        for i in range(0,len(rows)):
+            compare = rows[i]
+            check = compare[0]
+            checktwo = float(check)
+            print(checktwo)
+            if(checktwo > temp):
+                compare = rows[i]
+                check = compare[0]
+                checktwo = float(check)
+                temp=checktwo
+
+        maxMag = temp
+        return render_template('view2.html', rows = temp)
 
 @app.route('/question')
 def question():
